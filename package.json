@@ -4,10 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f .env.staging next dev",
-    "build:staging": "env-cmd -f .env.staging  next build",
-    "build:demo": "env-cmd -f .env.demo next build",
-    "build:prelive": "next build",
-    "build:production": "next build",
+    "build": "env-cmd -f .env.staging  next build",
     "start": "next start"
   },
   "dependencies": {
