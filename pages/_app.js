@@ -15,9 +15,7 @@ function MyApp({ Component, pageProps }) {
   const [locale, setLocale] = useState("en");
   const router = useRouter();
   const { defaultLocale, pathname } = router;
-  console.log(defaultLocale, pathname);
   const localeCopy = locales[locale];
-  console.log(localeCopy);
   const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
   const [direction, setDirection] = useState(locale === "en" ? "ltr" : "rtl");
   useEffect(() => {

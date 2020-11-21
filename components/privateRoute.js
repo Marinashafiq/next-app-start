@@ -14,11 +14,9 @@ export default WrappedComponent => {
     const userAuth = await checkUserAuthentication();
 
     // Are you an authorized user or not?
-    console.log(context.res)
     if (!userAuth?.auth) {
       // Handle server-side and client-side rendering.
       if (context.res) {
-          console.log(context.res)
         context.res?.writeHead(302, {
           Location: login,
         });
