@@ -26,7 +26,6 @@ function Home({ data  , intl : { messages }}) {
       >
         <a>Blog Post</a>
       </Link>
-      <p>Current locale: {locale}</p>
 
       <h1>{messages.home.hello}</h1>
 
@@ -85,15 +84,9 @@ function Home({ data  , intl : { messages }}) {
     </div>
   );
 }
-
-export async function getStaticProps() {
+Home.getInitialProps = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/3`);
-  const data = await res.json();
-  return {
-    props: {
-      data,
-    },
-  };
-}
-
+  const json = await res.json();
+  return { data: json };
+};
 export default injectIntl(Home);
