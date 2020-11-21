@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import Link from "next/link";
 import { injectIntl } from "react-intl"
-
+import Navbar from "../components/navbar/navbar"
 function Home({ data  , intl : { messages }}) {
   return (
     <div className={styles.container}>
@@ -14,7 +14,7 @@ function Home({ data  , intl : { messages }}) {
         <meta property="og:image" content={data.images[0].url} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
+<Navbar />
       <Link href="/Products/products">
         <a>Home</a>
       </Link>
