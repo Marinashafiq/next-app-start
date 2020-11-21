@@ -1,7 +1,9 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
+import Link from "next/link";
+import { injectIntl } from "react-intl"
 
-function Home({data}) {
+function Home({ data  , intl : { messages }}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -9,9 +11,25 @@ function Home({data}) {
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content={data.name} />
         <meta property="og:description" content={data.description} />
-        <meta property="og:image" content={data.images[0].url}/>
+        <meta property="og:image" content={data.images[0].url} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+
+      <Link href="/Products/products">
+        <a>Home</a>
+      </Link>
+      <Link
+        href={{
+          pathname: "/Products/[slug]",
+          query: { slug: "products" },
+        }}
+      >
+        <a>Blog Post</a>
+      </Link>
+      <p>Current locale: {locale}</p>
+
+      <h1>{messages.home.hello}</h1>
+
 
       <main className={styles.main}>
         <h1 className={styles.title}>
@@ -68,10 +86,14 @@ function Home({data}) {
   );
 }
 
-Home.getInitialProps = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/3`)
-  const json = await res.json()
-  return { data: json }
+export async function getStaticProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/3`);
+  const data = await res.json();
+  return {
+    props: {
+      data,
+    },
+  };
 }
 
-export default Home;
+export default injectIntl(Home);
