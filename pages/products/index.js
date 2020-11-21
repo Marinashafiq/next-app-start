@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import withPrivateRoute from '../../components/privateRoute';
-import "./products.module.scss";
+import "../../styles/products.module.scss";
 
 function Products() {
 
