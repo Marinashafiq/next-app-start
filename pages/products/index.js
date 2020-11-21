@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect } from "react";
+import withPrivateRoute from '../../components/privateRoute';
 import "./products.module.scss";
 
 function Products() {
@@ -24,5 +24,5 @@ function Products() {
   );
 }
 
+export default withPrivateRoute(Products);
 
-export default Products;

@@ -15,7 +15,7 @@ function Home({ data  , intl : { messages }}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 <Navbar />
-      <Link href="/Products/products">
+      <Link href="/products">
         <a>Home</a>
       </Link>
       <Link
