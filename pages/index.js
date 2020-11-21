@@ -1,24 +1,15 @@
 import Head from "next/head";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { requestProducts } from "../store/actions";
 import styles from "../styles/Home.module.scss";
 
-export default function Home() {
-  const dispatch = useDispatch();
-  const state = useSelector(state => state.products)
-  useEffect(() => {
-    dispatch(requestProducts(1));
-  }, []);
-
+function Home({data}) {
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content={state.name} />
-        <meta property="og:description" content={state.description} />
-        <meta property="og:image" content={state.images[0].url}/>
+        <meta property="og:title" content={data.name} />
+        <meta property="og:description" content={data.description} />
+        <meta property="og:image" content={data.images[0].url}/>
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
@@ -76,3 +67,11 @@ export default function Home() {
     </div>
   );
 }
+
+Home.getInitialProps = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/3`)
+  const json = await res.json()
+  return { data: json }
+}
+
+export default Home;
